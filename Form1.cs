@@ -1,7 +1,16 @@
 namespace calculatorCS;
 
 public partial class Form1 : Form
-{
+{   
+    // Store the current number entered by the user
+    private string currentNumber = "0";
+    // Store the previous number entered by the user
+    private string previousNumber = "0";
+    // Store the operation currently selected by the user
+    private char operation; 
+     // Store whether a decimal point has been entered
+     private bool isDecimalEntered = false;
+
     public Form1()
     {   
         // Create a new FlowLayoutPanel
@@ -30,8 +39,67 @@ public partial class Form1 : Form
 
     private void Button_Click(object sender, EventArgs e)
     {
+        Button button = (Button)sender;
+        string buttonText = button.Text;
+
+        switch (buttonText)
+        {
+            case "0":
+            case "1":
+            case "2":
+            case "3":
+            case "4":
+            case "5": 
+            case "6":
+            case "7":  
+            case "8": 
+            case "9":
+                // handle digit input
+                HandleDigitInput(button.Text);
+                break;       
+            case "+":
+                //handle addition
+                HandleAdditionInput(button.Text);
+                break;      
+            case "-":
+                //handle substraction
+                HandleSubstractInput(button.Text);        
+            case "*":
+                //Handle multiplication
+                HandleMultipInput(button.Text);
+                break;
+            case "/":
+                //Handle division
+                HandleDivInput(button.Text);
+                break;                     
+            case "=":
+                //handle equal sign
+                HandleEqualInput(button.Text);
+                break;         
+            case ".":
+                //handle decimal
+                HandleDecInput(button.Text);
+                break;
+        }
         
+        // Update the display
+        UpdateDisplay();
+
+    }
+    private void HandleDecInput(string ButtonText)
+    {
+        if (!isDecimalEntered)
+        {
+            currentNumber += ".";
+            isDecimalEntered = true;
+            UpdateDisplay();
+        }
     }
 
+    private void HandleDigitInput(string ButtonText)
+    {
+        currentNumber += ButtonText;
+        UpdateDisplay();
+    }
 }       
 
