@@ -23,7 +23,7 @@ public partial class Form1 : Form
         this.Controls.Add(flowLayoutPanel1);
 
         // Add buttons to The FlowLayoutPanel
-        string[] buttonLabels = {"7", "8", "9", "/", "4", "5", "6", "*", "1", "2", "3", "-", "0", ".", "=", "+" };
+        string[] buttonLabels = {"c" ,"7", "8", "9", "/", "4", "5", "6", "*", "1", "2", "3", "-", "0", ".", "=", "+" };
         foreach( string label in buttonLabels)
         {
             Button button = new Button();
@@ -80,6 +80,9 @@ public partial class Form1 : Form
             case ".":
                 //handle decimal
                 HandleDecInput(button.Text);
+                break;
+            case "c":
+                HandleClearInput(button.Text);
                 break;
         }
         
@@ -160,6 +163,17 @@ public partial class Form1 : Form
         isDecimalEntered = false;
         
         UpdateDisplay(result);
+    }
+
+    private void HandleClearInput(string ButtonText)
+    {
+        previousNumber = "0";
+        currentNumber = "0";
+        operation = '\0';
+        isDecimalEntered = false;
+
+        UpdateDisplay(currentNumber);
+
     }
 
 
