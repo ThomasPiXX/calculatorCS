@@ -63,7 +63,8 @@ public partial class Form1 : Form
                 break;      
             case "-":
                 //handle substraction
-                HandleSubstractInput(button.Text);        
+                HandleSubstractInput(button.Text);
+                break;        
             case "*":
                 //Handle multiplication
                 HandleMultipInput(button.Text);
@@ -89,17 +90,78 @@ public partial class Form1 : Form
     private void HandleDecInput(string ButtonText)
     {
         if (!isDecimalEntered)
-        {
+        {   
             currentNumber += ".";
             isDecimalEntered = true;
-            UpdateDisplay();
+            UpdateDisplay(currentNumber);
         }
     }
 
     private void HandleDigitInput(string ButtonText)
     {
         currentNumber += ButtonText;
-        UpdateDisplay();
+        UpdateDisplay(currentNumber);
     }
-}       
+
+    private void HandleDivInput(string ButtonText)
+    {   
+        previousNumber = currentNumber;
+        currentNumber = "0";
+        //division operation 
+        operation = '/';
+       ;
+    }
+
+    private void HandleMultipInput(string ButtonText)
+    {   
+        previousNumber = currentNumber;
+        currentNumber = "0";
+        operation = '*';
+       
+    }
+
+    private void HandleAdditionInput(string ButtonText)
+    {   
+        previousNumber = currentNumber;
+        currentNumber = "0";
+        operation = '+';
+    }
+
+    private void HandleSubstractInput(string ButtonText)
+    {   
+        previousNumber = currentNumber;
+        currentNumber = "0";
+        operation = '-';
+    }
+
+    private void HandleEqualInput(string ButtonText)
+    {
+        //default value
+        double result = 0.0;
+        switch (operation)
+        {
+            case '+':
+                result = double.Parse(previousNumber) + double.Parse(currentNumber);
+                break;
+            case '-':
+                result = double.Parse(previousNumber) - double.Parse(currentNumber);
+                break;
+            case '*':
+                result = double.Parse(previousNumber) * double.Parse(currentNumber);
+                break;
+            case '/':
+                result = double.Parse(previousNumber) / double.Parse(currentNumber);
+                break;   
+        }
+        
+        currentNumber = result.ToString();
+        previousNumber = "0";
+        operation = '\0';
+        isDecimalEntered = false;
+        
+        UpdateDisplay(result);
+    }
+
+
+}      
 
