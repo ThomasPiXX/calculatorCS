@@ -8,9 +8,9 @@ namespace calculatorCS
         private FlowLayoutPanel flowLayoutPanel1;
         private Label? displayLabel;
         // Store the current number entered by the user
-        private string currentNumber = "0";
+        private string currentNumber = "";
         // Store the previous number entered by the user
-        private string previousNumber = "0";
+        private string previousNumber = "";
         // Store the operation currently selected by the user
         private char operation; 
         // Store whether a decimal point has been entered
@@ -20,35 +20,75 @@ namespace calculatorCS
         {   
             // Create a new FlowLayoutPanel
             InitializeComponent();
+            this.ClientSize = new Size(400, 400);
             FlowLayoutPanel flowLayoutPanel1 = new FlowLayoutPanel();
             flowLayoutPanel1.FlowDirection = FlowDirection.TopDown;
             flowLayoutPanel1.Dock = DockStyle.Fill;
+
             
 
             // Create a new Label
             displayLabel = new Label();
-            displayLabel.Font = new Font("Arial", 18, FontStyle.Bold);
+            displayLabel.Font = new Font("Arial", 24, FontStyle.Bold);
             displayLabel.Width = 300;
             displayLabel.Height = 70;
-            displayLabel.TextAlign = ContentAlignment.MiddleRight;
+            displayLabel.TextAlign = ContentAlignment.MiddleCenter;
+            displayLabel.Margin = new Padding(5, 10, 5, 5);
             flowLayoutPanel1.Controls.Add(displayLabel);
 
+            
+            //Add a TableLayout to the FlowLayoutPanel
+            TableLayoutPanel tableLayoutPanel1 = new TableLayoutPanel();
+            tableLayoutPanel1.Height = 300;
+            tableLayoutPanel1.Width = 300;
+            tableLayoutPanel1.AutoSize = false;
+            tableLayoutPanel1.RowCount = 4;
+            tableLayoutPanel1.ColumnCount = 5;
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent,100));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100));
+            tableLayoutPanel1.Dock = DockStyle.Fill;
+            flowLayoutPanel1.Controls.Add(tableLayoutPanel1);
             // Add the FlowLayoutPanel to the form's Controls collection
             this.Controls.Add(flowLayoutPanel1);
 
             // Add buttons to The FlowLayoutPanel
-            string[] buttonLabels = {"c" ,"7", "8", "9", "/", "4", "5", "6", "*", "1", "2", "3", "-", "0", ",", "=", "+" };
-            foreach( string label in buttonLabels)
+            string[] buttonLabels = {"7" ,"8", "9", "*", "4", "5", "6", "-", "1", "2", "3", "+", "/", "0", ",", "="};
+            for (int row = 0; row < 4; row++)
             {
-                Button button = new Button();
-                button.Text = label;
-                button.Font = new Font("Arial", 18, FontStyle.Bold);
-                button.Width = 70;
-                button.Height = 70;
-                button.Margin = new Padding(5);
-                button.Click += Button_Click;
-                flowLayoutPanel1.Controls.Add(button);
+                for(int col = 0; col < 4; col++)
+                {
+                    int index = row * 4 + col;
+                    Button button = new Button();
+                    button.Text = buttonLabels[index];
+                    button.Font = new Font("Arial", 15, FontStyle.Bold);
+                    button.AutoSize = false;
+                    button.Width = 80;
+                    button.Height = 80;
+                    button.Margin = new Padding(0);
+                    button.Padding = new Padding(0);
+                    button.Click += Button_Click;
+                    tableLayoutPanel1.Controls.Add(button, col, row);
+                }
             }
+            Button clearButton = new Button();
+            clearButton.Text = "C";
+            clearButton.Font = new Font("Arial", 15, FontStyle.Bold);
+            clearButton.AutoSize = false;
+            clearButton.Height = 80;
+            clearButton.Width = 80;
+            clearButton.Margin = new Padding(0);
+            clearButton.Padding = new Padding(0);
+            clearButton.Click += Button_Click;
+            tableLayoutPanel1.Controls.Add(clearButton, 4, 3);
+
+
         }
 
         private void Button_Click(object? sender, EventArgs e)
@@ -95,7 +135,7 @@ namespace calculatorCS
                     //handle decimal
                     HandleDecInput(button.Text);
                     break;
-                case "c":
+                case "C":
                     HandleClearInput(button.Text);
                     break;
             }
@@ -123,7 +163,7 @@ namespace calculatorCS
         private void HandleDivInput(string ButtonText)
         {   
             previousNumber = currentNumber;
-            currentNumber = "0";
+            currentNumber = "";
             //division operation 
             operation = '/';
         ;
@@ -132,7 +172,7 @@ namespace calculatorCS
         private void HandleMultipInput(string ButtonText)
         {   
             previousNumber = currentNumber;
-            currentNumber = "0";
+            currentNumber = "";
             operation = '*';
         
         }
@@ -140,14 +180,14 @@ namespace calculatorCS
         private void HandleAdditionInput(string ButtonText)
         {   
             previousNumber = currentNumber;
-            currentNumber = "0";
+            currentNumber = "";
             operation = '+';
         }
 
         private void HandleSubstractInput(string ButtonText)
         {   
             previousNumber = currentNumber;
-            currentNumber = "0";
+            currentNumber = "";
             operation = '-';
         }
 
@@ -172,7 +212,7 @@ namespace calculatorCS
             }
             
             currentNumber = result.ToString();
-            previousNumber = "0";
+            previousNumber = "";
             operation = '\0';
             isDecimalEntered = false;
             
