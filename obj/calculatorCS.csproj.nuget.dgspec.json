@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\tommy\\OneDrive\\Bureau\\#\\calculatorCS\\calculatorCS.csproj": {}
+    "C:\\Users\\tommy\\OneDrive\\Bureau\\code\\calculatorCS\\calculatorCS.csproj": {}
   },
   "projects": {
-    "C:\\Users\\tommy\\OneDrive\\Bureau\\#\\calculatorCS\\calculatorCS.csproj": {
+    "C:\\Users\\tommy\\OneDrive\\Bureau\\code\\calculatorCS\\calculatorCS.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\tommy\\OneDrive\\Bureau\\#\\calculatorCS\\calculatorCS.csproj",
+        "projectUniqueName": "C:\\Users\\tommy\\OneDrive\\Bureau\\code\\calculatorCS\\calculatorCS.csproj",
         "projectName": "calculatorCS",
-        "projectPath": "C:\\Users\\tommy\\OneDrive\\Bureau\\#\\calculatorCS\\calculatorCS.csproj",
+        "projectPath": "C:\\Users\\tommy\\OneDrive\\Bureau\\code\\calculatorCS\\calculatorCS.csproj",
         "packagesPath": "C:\\Users\\tommy\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\tommy\\OneDrive\\Bureau\\#\\calculatorCS\\obj\\",
+        "outputPath": "C:\\Users\\tommy\\OneDrive\\Bureau\\code\\calculatorCS\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\tommy\\AppData\\Roaming\\NuGet\\NuGet.Config"
